@@ -1,4 +1,4 @@
-# Unidad 3: Big Data
+# Unidad 3: Big Data - HIVE-HBASE
 ## ST0263 - Tópicos Especiales en Telemática
 ## Ingeniería de Sistemas
 ## Universidad EAFIT

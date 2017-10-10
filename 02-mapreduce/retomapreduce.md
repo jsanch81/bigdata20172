@@ -1,11 +1,11 @@
-# Unidad 3: Big Data
+# Unidad 3: Big Data - Reto MapReduce
 ## ST0263 - Tópicos Especiales en Telemática
 ## Ingeniería de Sistemas
 ## Universidad EAFIT
 ### Profesor: Edwin Montoya M. – emontoya@eafit.edu.co
 ## 2017-2
 
-# Laboratorio MapReduce
+# Reto MapReduce
 
 ## 1. Se tiene un conjunto de datos, que representan el salario anual de los empleados formales en Colombia por sector económico, según la DIAN.
 

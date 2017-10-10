@@ -1,13 +1,11 @@
-# Unidad 3: Big Data
+# Unidad 3: Big Data - HIVE
 ## ST0263 - Tópicos Especiales en Telemática
 ## Ingeniería de Sistemas
 ## Universidad EAFIT
 ### Profesor: Edwin Montoya M. – emontoya@eafit.edu.co
 ## 2017-2
 
-# hive
-
-## TABLAS SENCILLAS EN HIVE
+# TABLAS SENCILLAS EN HIVE
 
 1. Se usarán los datos de Human Development Report (HDR) (http://hdr.undp.org/en/statistics/data)
 
@@ -214,16 +212,6 @@ mysql> CREATE TABLE `curso`.`username_employee2` (  `emp_id` INT NOT NULL,  `n
 $ sqoop export --connect jdbc:mysql://192.168.10.75:3306/curso --username curso -P --table username_employee2 --export-dir /user/username/mysql_in
 ```
 
-# TAREA:
+# RETO:
 
-1. Compare el rendimiento del wordcount en hive vs mapreduce (en java o python) manteniendo el mismo dataset (gutenberg-txt-es)
-
-# REALIZAR LOS SIGUIENTES TALLERES:
-
-1. HORTONWORKS: HOW TO PROCESS DATA WITH APACHE HIVE:
-
-https://es.hortonworks.com/tutorial/how-to-process-data-with-apache-hive/
-
-2. CLOUDERA: Exercise 1: Ingest and query relational data
-
-https://www.cloudera.com/developers/get-started-with-hadoop-tutorial/exercise-1.html
+## Compare el rendimiento del wordcount en hive vs mapreduce (en java o python) manteniendo el mismo dataset (gutenberg-txt-es)

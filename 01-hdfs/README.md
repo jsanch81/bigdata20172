@@ -1,13 +1,11 @@
-# Unidad 3: Big Data
+# Unidad 3: Big Data - HDFS
 ## ST0263 - Tópicos Especiales en Telemática
 ## Ingeniería de Sistemas
 ## Universidad EAFIT
 ### Profesor: Edwin Montoya M. – emontoya@eafit.edu.co
 ## 2017-2
 
-## TEMA: HDFS
-
-## Laboratorio HDFS
+# Laboratorio HDFS
 
 ## 1. cluster Hadoop
 

@@ -1,13 +1,11 @@
-# Unidad 3: Big Data
+# Unidad 3: Big Data - HBASE
 ## ST0263 - Tópicos Especiales en Telemática
 ## Ingeniería de Sistemas
 ## Universidad EAFIT
 ### Profesor: Edwin Montoya M. – emontoya@eafit.edu.co
 ## 2017-2
 
-# HBASE
-
-## HBASE DESDE EL cli
+# HBASE DESDE EL cli
 
 1. Conectarse al cluster Hadoop (192.168.10.75)
 
@@ -129,8 +127,6 @@ Permisos de usuarios:
 
       hbase(main):000:0> user_permission <table>
 
+# Acceso a Hbase via Hive
 
-
-
-
-# TAREA:
+[hive-hbase](hive-hbase.md)

@@ -1,17 +1,17 @@
-# Unidad 3: Big Data
+# Unidad 3: Big Data - MAP/REDUCE
 ## ST0263 - Tópicos Especiales en Telemática
 ## Ingeniería de Sistemas
 ## Universidad EAFIT
 ### Profesor: Edwin Montoya M. – emontoya@eafit.edu.co
 ## 2017-2
 
-# MapReduce
-
 # Reto para hacer:
 
 [Reto MapReduce](retomapreduce.md)
 
-# (1) WordCount en Java
+# Laboratorio de MapReduce
+
+## (1) WordCount en Java
 
 Tomado de: https://hadoop.apache.org/docs/r2.7.3/hadoop-mapreduce-client/hadoop-mapreduce-client-core/MapReduceTutorial.html
 
@@ -102,7 +102,7 @@ Tomado de: https://hadoop.apache.org/docs/r2.7.3/hadoop-mapreduce-client/hadoop-
       }
     }
 ```
-# (2) WordCount en python
+## (2) WordCount en python
 
 * Hay varias librerias de python para acceder a servicios MapReduce en Hadoop
 
