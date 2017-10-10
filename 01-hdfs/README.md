@@ -40,25 +40,25 @@ Puede utilizar datos previamente descargados:
 Para efectos de esta guia, es equivalente el comando "hadoop fs" y "hdfs dfs". La diferencia es que "hdfs dfs" es solo para sistemas de archivos HDFS, pero "hadoop fs" soporta otros adicionales como S3.
 
     user@master$ hdfs dfs -ls /
-    user@master$ hdfs dfs -ls /st0263
+    user@master$ hdfs dfs -ls /user
     user@master$ hdfs dfs -ls /datasets
 
-## 4. Crear tu propio directorio de usuario en HDFS (debe hacerse con el usuario hdfs para crear el /st0263/<username>)
+## 4. Crear tu propio directorio de usuario en HDFS (debe hacerse con el usuario hdfs para crear el /user/<username>)
 
     user@master$ sudo su – hdfs
-    user@master$ hadoop fs -mkdir /st0263/<username>
-    user@master$ hadoop fs -chown <username> /st0263/<username>
+    user@master$ hadoop fs -mkdir /user/<username>
+    user@master$ hadoop fs -chown <username> /user/<username>
 
 ej:
 
-    user@master$ hadoop fs -mkdir /st0263/ctorres9
-    user@master$ hadoop fs -chown ctorres9 /st0263/ctorres9
+    user@master$ hadoop fs -mkdir /user/ctorres9
+    user@master$ hadoop fs -chown ctorres9 /user/ctorres9
 
 
 
-    user@master$ hdfs dfs -mkdir /st0263/<username>
-    user@master$ hdfs dfs -mkdir /st0263/<username>/datasets
-    user@master$ hdfs dfs -mkdir /st0263/<username>/datasets/gutenberg
+    user@master$ hdfs dfs -mkdir /user/<username>
+    user@master$ hdfs dfs -mkdir /user/<username>/datasets
+    user@master$ hdfs dfs -mkdir /user/<username>/datasets/gutenberg
 
 reemplace “<username>” por su usuario en el DCA
 
@@ -66,21 +66,21 @@ reemplace “<username>” por su usuario en el DCA
 
 Se asume que tiene los datos LOCALES de gutenberg en: /datasets/gutenberg-txt-es o donde los haya descargado.
 
-    user@master$ hdfs dfs -copyFromLocal /datasets/gutenberg-txt-es/*.txt /st0263/<username>/datasets/gutenberg
+    user@master$ hdfs dfs -copyFromLocal /datasets/gutenberg-txt-es/*.txt /user/<username>/datasets/gutenberg
 
 otro comando para copiar:
 
-    user@master$ hdfs dfs -put /datasets/gutenberg-txt-es/*.txt /st0263/<username>/datasets/gutenberg
+    user@master$ hdfs dfs -put /datasets/gutenberg-txt-es/*.txt /user/<username>/datasets/gutenberg
 
-    user@master$ hdfs dfs -ls /st0263/<username>/datasets
+    user@master$ hdfs dfs -ls /user/<username>/datasets
 
 ## 6. Copiar archivos de HDFS hacia local
 
-    user@master$ hdfs dfs -copyToLocal /st0263/<username>/data_out1/* ~<username>/data_out1
+    user@master$ hdfs dfs -copyToLocal /user/<username>/data_out1/* ~<username>/data_out1
 
 otro comando para traer:
 
-    user@master$ hdfs dfs -get /st0263/<username>/data_out1/* ~<username>/data_out1
+    user@master$ hdfs dfs -get /user/<username>/data_out1/* ~<username>/data_out1
 
     user@master$ ls -l data_out1
 
