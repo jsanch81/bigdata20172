@@ -7,7 +7,7 @@
 
 # Reto para hacer:
 
-[Reto MapReduce](retomapreduce.md)
+[Reto MapReduce](retomapreduce.md) - REALIZAR AL MENOS UN RETO.
 
 # Laboratorio de MapReduce
 
