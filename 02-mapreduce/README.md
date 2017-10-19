@@ -34,7 +34,7 @@ Tomado de: https://hadoop.apache.org/docs/r2.7.3/hadoop-mapreduce-client/hadoop-
 
 * el comando hadoop se este abandonando por yarn:
 
->		user@master$ yarn jar wc.jar WordCount hdfs:///datasets/gutenberg-txt-es/*.txt hdfs:///user/<username>/data_out2
+>		user@master$ yarn jar wc.jar WordCount hdfs:///datasets/gutenberg-txt-es/19*.txt hdfs:///user/<username>/data_out2
 
 ``` Java
     //
@@ -119,6 +119,8 @@ Tomado de: https://hadoop.apache.org/docs/r2.7.3/hadoop-mapreduce-client/hadoop-
 * Si utilizará un manejador de versiones de python, puede ser así:
 
 primero instalar pyenv (https://github.com/pyenv/pyenv-installer)
+
+### EL CLUSTER DE LA MATERIA, YA TIENE INSTALADO MRJOB, LAS SIGUIENTES INSTRUCCIONES ES POR SI UD DESEA INSTALAR SU PROPIO CLUSTER O CONFIGURAR SU SANDBOX:
 
 >		user@master$ curl -L https://raw.githubusercontent.com/pyenv/pyenv-installer/master/bin/pyenv-installer | bash
 >		user@master$ pyenv update
