@@ -133,18 +133,18 @@ beeline>LOAD DATA INPATH …
 
 ```
 En 192.168.10.75, se tiene Mysql con:
-Base de datos: “curso”
+Base de datos: “st0263”
 Tabla: “username_employee”
-User: curso/curso
-$ mysql –u curso –p
+User: st0263/3620ts
+$ mysql –u st0263 –p
 Enter password: ******
-mysql> use curso;
+mysql> use st0263;
 ```
 //ingreso de datos
 ```
-$ mysql -u curso -p
-Enter password: curso
-mysql> use curso;
+$ mysql -u st0263 -p
+Enter password: 3620ts
+mysql> use st0263;
 mysql> insert into username_employee values (101, 'name1', 1800);
 mysql> insert into username_employee values (102, 'name2', 1500);
 mysql> insert into username_employee values (103, 'name3', 1000);
@@ -157,23 +157,23 @@ mysql> 
 
 //Transferir datos de una base de datos (tipo mysql) hacia HDFS:
 ```
-$ sqoop import --connect jdbc:mysql://192.168.10.75:3306/curso --username curso -P --table username_employee --target-dir /user/username/mysqlOut -m 1
+$ sqoop import --connect jdbc:mysql://192.168.10.75:3306/st0263 --username st0263 -P --table username_employee --target-dir /user/<username>/mysqlOut -m 1
 ```
 
 // listar archivos:
 ```
-$ hadoop fs -ls /user/username/mysqlOut
+$ hadoop fs -ls /user/<username>/mysqlOut
 ```
 
 // Crear tabla HIVE a partir de definición tabla Mysql:
 ```
-$ sqoop create-hive-table --connect jdbc:mysql://192.168.10.75:3306/curso --username curso -P --table username_employee --hive-table username_emps --mysql-delimiters
+$ sqoop create-hive-table --connect jdbc:mysql://192.168.10.75:3306/st0263 --username st0263 -P --table username_employee --hive-table username_emps --mysql-delimiters
 ```
 
 // Transferir datos de una base de datos (tipo mysql) hacia HIVE vía HDFS:
 
 ```
-$ sqoop import --connect jdbc:mysql://192.168.10.75:3306/curso --username curso -P --table username_employee --hive-import --hive-table username_emps -m 1
+$ sqoop import --connect jdbc:mysql://192.168.10.75:3306/st0263 --username st0263 -P --table username_employee --hive-import --hive-table username_emps -m 1
 ```
 
 // Crear la tabla Hive Manualmente:
@@ -184,7 +184,7 @@ beeline>
 ```
 // Cargar datos a Hive Manualmente:
 ```
-beeline> load data inpath '/user/username/mysqlOut/part-m-00000' into table username_emps;
+beeline> load data inpath '/user/<username>/mysqlOut/part-m-00000' into table username_emps;
 OK                          
 beeline> select * from username_emps;
 OK
@@ -201,7 +201,7 @@ beeline> 
 
 // Crear una Tabla ‘username_employee2’ en Mysql con los mismos atributos de ‘username_employee’
 ```
-mysql> CREATE TABLE `curso`.`username_employee2` (  `emp_id` INT NOT NULL,  `name` VARCHAR(45),  `salary` INT,  PRIMARY KEY (`emp_id`));
+mysql> CREATE TABLE `st0263`.`username_employee2` (  `emp_id` INT NOT NULL,  `name` VARCHAR(45),  `salary` INT,  PRIMARY KEY (`emp_id`));
 ```
 
 // Asumiendo datos separados por ”,” en HDFS en:
@@ -209,7 +209,7 @@ mysql> CREATE TABLE `curso`.`username_employee2` (  `emp_id` INT NOT NULL,  `n
 /user/username/mysql_in/*
 
 ```
-$ sqoop export --connect jdbc:mysql://192.168.10.75:3306/curso --username curso -P --table username_employee2 --export-dir /user/username/mysql_in
+$ sqoop export --connect jdbc:mysql://192.168.10.75:3306/st0263 --username st0263 -P --table username_employee2 --export-dir /user/<username>/mysql_in
 ```
 
 # RETO:
