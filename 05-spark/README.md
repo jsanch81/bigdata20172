@@ -59,3 +59,21 @@ Cree un Notebook:
 ![crear Notebook](zeppelin-create1.png)
 
 ![crear Notebook](zeppelin-create2.png)
+
+Wordcount en python:
+
+```python
+    %spark2.python
+    text_file = sc.textFile("hdfs:///datasets/gutenberg-txt-es/*.txt")
+    counts = text_file.flatMap(lambda line: line.split(" ")).map(lambda word: (word, 1)).reduceByKey(lambda a, b: a + b)
+    counts.saveAsTextFile("hdfs:///user/emontoya/spout1")
+```
+
+wordcount en spark.sql
+
+    %spark2.sql
+
+    SHOW tables
+    SHOW database
+    USE emontoya
+    CREATE TABLE docs (line STRING)
