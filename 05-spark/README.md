@@ -87,4 +87,4 @@ wordcount en spark.sql
     LOAD DATA INPATH '/datasets/gutenberg-txt-es/*.txt' INTO TABLE emontoya.docs
 
     %spark2.sql
-    SELECT word, count(1) AS count FROM (SELECT explode(split(line,' ')) AS word FROM docs) w GROUP BY word ORDER BY word;
+    SELECT word, count(1) AS count FROM (SELECT explode(split(line,' ')) AS word FROM docs) w GROUP BY word ORDER BY word
