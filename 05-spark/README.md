@@ -66,14 +66,25 @@ Wordcount en python:
     %spark2.pyspark
     text_file = sc.textFile("hdfs:///datasets/gutenberg-txt-es/*.txt")
     counts = text_file.flatMap(lambda line: line.split(" ")).map(lambda word: (word, 1)).reduceByKey(lambda a, b: a + b)
-    counts.saveAsTextFile("hdfs:///user/emontoya/spout1")
+    counts.saveAsTextFile("hdfs:///tmp/spout1")
 ```
 
 wordcount en spark.sql
 
     %spark2.sql
-
     SHOW tables
+
+    %spark2.sql
     SHOW database
+
+    %spark2.sql    
     USE emontoya
-    CREATE TABLE docs (line STRING)
+
+    %spark2.sql   
+    CREATE TABLE emontoya.docs (line STRING)
+
+    %spark2.sql
+    LOAD DATA INPATH '/datasets/gutenberg-txt-es/*.txt' INTO TABLE emontoya.docs
+
+    %spark2.sql
+    SELECT word, count(1) AS count FROM (SELECT explode(split(line,' ')) AS word FROM docs) w GROUP BY word ORDER BY word;
