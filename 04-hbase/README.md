@@ -19,6 +19,11 @@ username@192.168.10.75's password: ******
 
 // PARA HACER ESTE LABORATORIO, SE DEBE EMPLEAR EL NAMESPACE 'st0263'
 
+como usuario administrador (hbase)
+
+      hbase(main):000:0> create_namespace 'st0263'
+      hbase(main):000:0> grant '@bigdata-estud','RWXCA','@st0263'
+
 2. Comandos interactivos
 
 ```
