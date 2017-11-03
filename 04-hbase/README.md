@@ -17,6 +17,8 @@ username@192.168.10.75's password: ******
 [username@hdplabmaster ~]$
 ```
 
+// PARA HACER ESTE LABORATORIO, SE DEBE EMPLEAR EL NAMESPACE 'st0263'
+
 2. Comandos interactivos
 
 ```
@@ -24,18 +26,22 @@ username@192.168.10.75's password: ******
 
       hbase(main):001:0> help
 
-      hbase(main):002:0> create ‘test’, ‘cf’
+      hbase(main):002:0> create 'test', 'cf' /// fallará por permisos
 
-      hbase(main):003:0> list ‘test’
+      hbase(main):002:0> create 'st0263:test', 'cf' /// funcionará
+
+// cuando manipule tablas, anteponga al nombre el namespace 'st0263:'      
+
+      hbase(main):003:0> list 'test'
 
       // listar todas las TABLAS
       hbase(main):01x:0> list
 
       hbase(main):004:0>put 'test', 'row1', 'cf:a', 'val1'
 
-      hbase(main):005:0> scan ‘test’
+      hbase(main):005:0> scan 'test'
 
-      hbase(main):006:0> get ‘test’, ‘row1’
+      hbase(main):006:0> get 'test', ‘row1'
 
       hbase(main):007:0>put 'test', 'row2', 'cf:b', 'val2'
       hbase(main):008:0>put 'test', 'row3', 'cf:a', 'val3'
@@ -44,7 +50,7 @@ username@192.168.10.75's password: ******
 
       //listar todos los valores de una columna en una CF:
 
-      hbase(main):011:0>scan ‘test', {COLUMNS => 'cf:a’}
+        hbase(main):011:0>scan 'test', {COLUMNS => 'cf:a'}
 ```
 3. Acceso a HBASE desde la API Java
 
@@ -114,6 +120,11 @@ Asignar permisos:
 
       hbase(main):000:0> grant <user> <permissions> <table> [ <column family> [ <column qualifier> ] ]
       hbase(main):000:0> grant <@group> <permissions> <table> [ <column family> [ <column qualifier> ] ]
+
+      ej:
+
+      hbase(main):000:0> create_namespace 'st0263'
+      hbase(main):000:0> grant '@bigdata-estud','RWXCA','@st0263'
 
 Remover permisos:
 
