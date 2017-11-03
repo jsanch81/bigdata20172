@@ -142,7 +142,7 @@ mysql> use st0263;
 ```
 
 
-//creación de la tabla: <username>_employee (cambie username por su propio)
+//creación de la tabla: username_employee (cambie username por su propio)
 ```
 $ mysql -u st0263 -p
 Enter password: 3620ts
