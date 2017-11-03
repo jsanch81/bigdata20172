@@ -28,7 +28,7 @@ ej:
 
 [emontoya@hdplabmaster ~]$ kinit
 Password for emontoya@DIS.EAFIT.EDU.CO: *****
-[emontoya@hdplabmaster ~]$ 
+[emontoya@hdplabmaster ~]$
 
 
 ```
@@ -75,12 +75,13 @@ beeline> describe hdi;
 // CUANDO SE CARGAN DATOS CON 'LOAD DATA' SE BORRAN LOS ARCHIVOS ORIGEN, POR LO CUAL DEBE CAMBIAR LOS PERMISOS LOCALES O REMOTOS con chmod 777 de los archivos.
 
 // si es local:
-
+```
 $ chmod -R 777 /home/<username>/datasets/<dir>/*
-
+```
 // si estan en hdfs:
-
+```
 $ hdfs dfs -chmod -r 777 /user/<username>/datasets/<dir>/*
+```
 
 ```
 beeline> load data local inpath 'hdi-data.csv' into table HDI;
