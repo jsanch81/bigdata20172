@@ -19,6 +19,18 @@ entrar al cluster:
 $ ssh username@192.168.10.75
 username@192.168.10.75's password: ******
 [username@hdplabmaster ~]$
+
+// autentiquese con kerberos:
+
+[username@hdplabmaster ~]$ kinit
+
+ej:
+
+[emontoya@hdplabmaster ~]$ kinit
+Password for emontoya@DIS.EAFIT.EDU.CO: *****
+[emontoya@hdplabmaster ~]$ 
+
+
 ```
 
 3. copiar el archivo hdi-data.csv al HOME LOCAL del usuario:
@@ -37,6 +49,15 @@ beeline>
 !connect jdbc:hive2://hdplabmaster:2181/;serviceDiscoveryMode=zooKeeper;zooKeeperNamespace=hiveserver2     
 ```
 
+si va a trabajar en el cluster, se recomienda que cree una base de datos por usuario, y todos los comandos los use basados en esa base de datos.
+
+```
+beeline> CREATE <username>;
+beeline> USE <username>;
+
+```
+
+
 5. Crear la tabla HDI en Hive:
 ```
 beeline> CREATE TABLE HDI (id INT, country STRING, hdi FLOAT, lifeex INT, mysch INT, eysch INT, gni INT) ROW FORMAT DELIMITED FIELDS TERMINATED BY ',' STORED AS TEXTFILE;
@@ -50,6 +71,16 @@ beeline> describe hdi;
 ```
 
 6. cargar los datos LOCALES a la tabla HDI:
+
+// CUANDO SE CARGAN DATOS CON 'LOAD DATA' SE BORRAN LOS ARCHIVOS ORIGEN, POR LO CUAL DEBE CAMBIAR LOS PERMISOS LOCALES O REMOTOS con chmod 777 de los archivos.
+
+// si es local:
+
+$ chmod -R 777 /home/<username>/datasets/<dir>/*
+
+// si estan en hdfs:
+
+$ hdfs dfs -chmod -r 777 /user/<username>/datasets/<dir>/*
 
 ```
 beeline> load data local inpath 'hdi-data.csv' into table HDI;
@@ -76,12 +107,15 @@ $ hive
 beeline> CREATE TABLE EXPO (country STRING, expct FLOAT) ROW FORMAT DELIMITED FIELDS TERMINATED BY ‘,’ STORED AS TEXTFILE;
 ```
 
-3. Carga los datos:export-data.csv
+3. Carga los datos: export-data.csv
 ```
 beeline>LOAD DATA LOCAL INPATH ‘export-data.csv’ INTO TABLE EXPO;
 ```
 
 4. EJECUTAR EL JOIN DE 2 TABLAS:
+
+// este comando esta fallando en el cluster 192.168.10.75. Funciona en su sandbox o en Zeppelin con el interprete '%spark2.sql', mire el lab de spark.
+
 ```
 beeline> SELECT h.country, gni, expct FROM HDI h JOIN EXPO e ON (h.country = e.country) WHERE gni > 2000;
 ```
@@ -98,6 +132,9 @@ beeline>LOAD DATA INPATH ‘docs’ INTO TABLE docs;
 beeline>LOAD DATA INPATH ‘docs’ OVERWRITE INTO TABLE docs;
 ```
 // ordenado por palabra
+
+// este comando esta fallando en el cluster 192.168.10.75. Funciona en su sandbox o en Zeppelin con el interprete '%spark2.sql', mire el lab de spark.
+
 ```
 beeline>SELECT word, count(1) AS count FROM
     (SELECT explode(split(line,' ')) AS word FROM docs) w
