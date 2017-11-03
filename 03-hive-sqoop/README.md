@@ -140,16 +140,26 @@ $ mysql –u st0263 –p
 Enter password: ******
 mysql> use st0263;
 ```
+
+
+//creación de la tabla: <username>_employee (cambie username por su propio)
+```
+$ mysql -u st0263 -p
+Enter password: 3620ts
+mysql> use st0263;
+mysql> create table <username>_employee (emp_id int, name varchar(50), salary int, primary key (emp_id));
+```
+
 //ingreso de datos
 ```
 $ mysql -u st0263 -p
 Enter password: 3620ts
 mysql> use st0263;
-mysql> insert into username_employee values (101, 'name1', 1800);
-mysql> insert into username_employee values (102, 'name2', 1500);
-mysql> insert into username_employee values (103, 'name3', 1000);
-mysql> insert into username_employee values (104, 'name4', 2000);
-mysql> insert into username_employee values (105, 'name5', 1600);
+mysql> insert into <username>_employee values (101, 'name1', 1800);
+mysql> insert into <username>_employee values (102, 'name2', 1500);
+mysql> insert into <username>_employee values (103, 'name3', 1000);
+mysql> insert into <username>_employee values (104, 'name4', 2000);
+mysql> insert into <username>_employee values (105, 'name5', 1600);
 Query OK, 1 row affected (0.00 sec)
 mysql> 
 ```
