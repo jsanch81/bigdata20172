@@ -36,10 +36,12 @@ Password for emontoya@DIS.EAFIT.EDU.CO: *****
 3. copiar el archivo hdi-data.csv al HOME LOCAL del usuario:
 
 ```
-/home/<username>/datasets
+/tmp/<username>/datasets
 ```
 
-debe haber una archivo /home/<username>/datasets/hdi-data.csv para el trabajo a continuación.   
+debe haber una archivo /tmp/<username>/datasets/hdi-data.csv para el trabajo a continuación.  
+
+es importante que el directorio y archivos de datos, tengan acceso público a todos los usuarios, en especial el usuario 'hive'
 
 4. ejecutar Hive:
 
@@ -52,7 +54,7 @@ beeline>
 si va a trabajar en el cluster, se recomienda que cree una base de datos por usuario, y todos los comandos los use basados en esa base de datos.
 
 ```
-beeline> CREATE <username>;
+beeline> CREATE DATABASE <username>;
 beeline> USE <username>;
 
 ```
@@ -76,7 +78,7 @@ beeline> describe hdi;
 
 // si es local:
 ```
-$ chmod -R 777 /home/<username>/datasets/<dir>/*
+$ chmod -R 777 /tmp/<username>/datasets/<dir>/*
 ```
 // si estan en hdfs:
 ```
@@ -84,7 +86,8 @@ $ hdfs dfs -chmod -r 777 /user/<username>/datasets/<dir>/*
 ```
 
 ```
-beeline> load data local inpath 'hdi-data.csv' into table HDI;
+beeline> use <username>
+beeline> load data local inpath '/tmp/<username>/datasets/hdi-data.csv' into table HDI;
 ```
 
 7. hacer consultas y cálculos sobre la tabla HDI:
@@ -104,13 +107,12 @@ usar los datos en 'datasets' de este repositorio.
 2. Iniciar hive y crear la tabla EXPO:
 
 ```
-$ hive
 beeline> CREATE TABLE EXPO (country STRING, expct FLOAT) ROW FORMAT DELIMITED FIELDS TERMINATED BY ‘,’ STORED AS TEXTFILE;
 ```
 
 3. Carga los datos: export-data.csv
 ```
-beeline>LOAD DATA LOCAL INPATH ‘export-data.csv’ INTO TABLE EXPO;
+beeline>LOAD DATA LOCAL INPATH '/tmp/<username>/datasets/export-data.csv' INTO TABLE EXPO;
 ```
 
 4. EJECUTAR EL JOIN DE 2 TABLAS:
@@ -122,16 +124,26 @@ beeline> SELECT h.country, gni, expct FROM HDI h JOIN EXPO e ON (h.country = e.c
 ```
 ## WORDCOUNT EN HIVE:
 ```
+beeline> use <username>
 beeline>CREATE TABLE docs (line STRING);
 ```
-// carga incremental
+// carga incremental desde HDFS
 ```
-beeline>LOAD DATA INPATH ‘docs’ INTO TABLE docs;
+beeline>LOAD DATA INPATH '/user/<username>/datasets/gutenberg-txt-es/*.txt' INTO TABLE docs;
 ```
-// carga desde cero
+// carga desde cero  desde HDFS
 ```
-beeline>LOAD DATA INPATH ‘docs’ OVERWRITE INTO TABLE docs;
+beeline>LOAD DATA INPATH '/user/<username>/datasets/gutenberg-txt-es/*.txt' OVERWRITE INTO TABLE docs;
 ```
+// carga incremental desde LOCAL
+```
+beeline>LOAD DATA LOCAL INPATH '/tmp/<username>/datasets/gutenberg-txt-es/*.txt' INTO TABLE docs;
+```
+// carga desde cero  desde LOCAL
+```
+beeline>LOAD DATA LOCAL INPATH '/tmp/<username>/datasets/gutenberg-txt-es/*.txt' OVERWRITE INTO TABLE docs;
+```
+
 // ordenado por palabra
 
 // este comando esta fallando en el cluster 192.168.10.75. Funciona en su sandbox o en Zeppelin con el interprete '%spark2.sql', mire el lab de spark.
